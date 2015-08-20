@@ -1,0 +1,25 @@
+{
+    "name": "cornford/notifier",
+    "description": "An easy way to send notification messages to a client using AJAX in Laravel.",
+    "keywords": ["laravel", "notification", "message", "client", "send"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bradley Cornford",
+            "email": "me@bradleycornford.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev",
+        "mockery/mockery": "0.9.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Cornford\\Notifier": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
