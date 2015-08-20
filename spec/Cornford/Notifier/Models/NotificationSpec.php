@@ -14,28 +14,28 @@ class NotificationSpec extends ObjectBehavior {
 
 	function it_is_initializable()
 	{
-		$this->beConstructedWith(self::STRING, self::TYPE, new DateTime('now'), self::INTEGER, []);
+		$this->beConstructedWith(self::STRING, self::TYPE, new DateTime('now'), self::INTEGER, array());
 		$this->shouldHaveType('Cornford\Notifier\Contracts\NotifierNotificationInterface');
 	}
 
 	function it_throws_an_exception_when_constructed_with_an_invalid_message()
 	{
-		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', ['', '', '', '', []]);
+		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', ['', '', '', '', array()]);
 	}
 
 	function it_throws_an_exception_when_constructed_with_an_invalid_type()
 	{
-		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', [self::STRING, '', '', '', []]);
+		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', [self::STRING, '', '', '', array()]);
 	}
 
 	function it_throws_an_exception_when_constructed_with_an_invalid_datetime()
 	{
-		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', [self::STRING, self::TYPE, '', '', []]);
+		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', [self::STRING, self::TYPE, '', '', array()]);
 	}
 
 	function it_throws_an_exception_when_constructed_with_an_invalid_expiry()
 	{
-		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', [self::STRING, self::TYPE, new DateTime('now'), '', []]);
+		$this->shouldThrow('Cornford\Notifier\Exceptions\NotifierNotificationArgumentException')->during('__construct', [self::STRING, self::TYPE, new DateTime('now'), '', array()]);
 	}
 
 	function it_throws_an_exception_when_constructed_with_an_invalid_options()

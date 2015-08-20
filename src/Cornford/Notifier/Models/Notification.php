@@ -39,7 +39,13 @@ class Notification implements NotifierNotificationInterface {
 	 *
 	 * @var array
 	 */
-	private $types = [self::NOTIFICATION_TYPE_NONE, self::NOTIFICATION_TYPE_INFO, self::NOTIFICATION_TYPE_SUCCESS, self::NOTIFICATION_TYPE_WARNING, self::NOTIFICATION_TYPE_DANGER];
+	private $types = [
+		self::NOTIFICATION_TYPE_NONE,
+		self::NOTIFICATION_TYPE_INFO,
+		self::NOTIFICATION_TYPE_SUCCESS,
+		self::NOTIFICATION_TYPE_WARNING,
+		self::NOTIFICATION_TYPE_DANGER
+	];
 
 	/**
 	 * Notification message date time.
