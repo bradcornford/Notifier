@@ -39,7 +39,7 @@ class Notification implements NotifierNotificationInterface {
 	 *
 	 * @var array
 	 */
-	private $types = [
+    protected $types = [
 		self::NOTIFICATION_TYPE_NONE,
 		self::NOTIFICATION_TYPE_INFO,
 		self::NOTIFICATION_TYPE_SUCCESS,
