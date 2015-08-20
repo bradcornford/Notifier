@@ -58,23 +58,23 @@ interface NotifierNotificationInterface {
 	/**
 	 * Get the notification message date time.
 	 *
-	 * @return integer
+	 * @return DateTime
 	 */
 	public function getDatetime();
 
 	/**
-	 * Set the notification message expiry in minutes.
+	 * Set the notification message expiry in minutes or with a DateTime object.
 	 *
-	 * @param integer $value
+	 * @param DateTime|integer $value
 	 *
 	 * @return void
 	 */
 	public function setExpiry($value);
 
 	/**
-	 * Get the notification message expiry in minutes.
+	 * Get the notification message expiry in minutes or a DateTime object.
 	 *
-	 * @return integer
+	 * @return DateTime|integer
 	 */
 	public function getExpiry();
 
@@ -116,10 +116,11 @@ interface NotifierNotificationInterface {
 	 * @return void
 	 */
 	public function setOptions(array $value);
+
 	/**
 	 * Get the notification message options.
 	 *
-	 * @return boolean
+	 * @return array
 	 */
 	public function getOptions();
 

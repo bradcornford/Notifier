@@ -157,7 +157,7 @@ class Notification implements NotifierNotificationInterface {
 	/**
 	 * Get the notification message date time.
 	 *
-	 * @return integer
+	 * @return DateTime
 	 */
 	public function getDatetime()
 	{
@@ -165,9 +165,9 @@ class Notification implements NotifierNotificationInterface {
 	}
 
 	/**
-	 * Set the notification message expiry in minutes.
+	 * Set the notification message expiry in minutes or with a DateTime object.
 	 *
-	 * @param integer $value
+	 * @param DateTime|integer $value
 	 *
 	 * @return void
 	 */
@@ -177,9 +177,9 @@ class Notification implements NotifierNotificationInterface {
 	}
 
 	/**
-	 * Get the notification message expiry in minutes.
+	 * Get the notification message expiry in minutes or a DateTime object.
 	 *
-	 * @return integer
+	 * @return DateTime|integer
 	 */
 	public function getExpiry()
 	{
@@ -273,7 +273,7 @@ class Notification implements NotifierNotificationInterface {
 	/**
 	 * Get the notification message options.
 	 *
-	 * @return boolean
+	 * @return array
 	 */
 	public function getOptions()
 	{
