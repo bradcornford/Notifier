@@ -46,6 +46,7 @@ interface NotifierNotificationInterface {
 	 * @return string
 	 */
 	public function getType();
+
 	/**
 	 * Set the notification message date time.
 	 *

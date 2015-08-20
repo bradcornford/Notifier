@@ -2,6 +2,7 @@
 
 use Cornford\Notifier\Contracts\NotifierInterface;
 use Cornford\Notifier\Exceptions\NotifierException;
+use DateTime;
 use Exception;
 
 class Notifier extends NotifierAbstract implements NotifierInterface {
@@ -30,7 +31,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 *  Update displayed status for notification messages.
 	 *
-	 * @return self
+	 * @return Notifier
 	 */
 	public function displayedAllNotifications()
 	{
@@ -44,7 +45,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 *  Expire displayed notification messages.
 	 *
-	 * @return void
+	 * @return Notifier
 	 */
 	public function expireDisplayedNotifications()
 	{
@@ -60,7 +61,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 *  Expire all notification messages.
 	 *
-	 * @return void
+	 * @return Notifier
 	 */
 	public function expireAllNotifications()
 	{
@@ -74,7 +75,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return void
+	 * @return Notifier
 	 */
 	public function fetchNotifications(array $notifications = [])
 	{
@@ -92,7 +93,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return self
+	 * @return Notifier
 	 */
 	public function storeNotifications(array $notifications = [])
 	{

@@ -35,19 +35,6 @@ class Notification implements NotifierNotificationInterface {
 	protected $type;
 
 	/**
-	 * Notification message types.
-	 *
-	 * @var array
-	 */
-    protected $types = [
-		self::NOTIFICATION_TYPE_NONE,
-		self::NOTIFICATION_TYPE_INFO,
-		self::NOTIFICATION_TYPE_SUCCESS,
-		self::NOTIFICATION_TYPE_WARNING,
-		self::NOTIFICATION_TYPE_DANGER
-	];
-
-	/**
 	 * Notification message date time.
 	 *
 	 * @var DateTime
@@ -85,7 +72,18 @@ class Notification implements NotifierNotificationInterface {
 			throw new NotifierNotificationArgumentException('Invalid message supplied.');
 		}
 
-		if (empty($message) || !in_array($type, $this->types)) {
+		if (empty($message) ||
+			!in_array(
+				$type,
+				[
+					self::NOTIFICATION_TYPE_NONE,
+					self::NOTIFICATION_TYPE_INFO,
+					self::NOTIFICATION_TYPE_SUCCESS,
+					self::NOTIFICATION_TYPE_WARNING,
+					self::NOTIFICATION_TYPE_DANGER
+				]
+			)
+		) {
 			throw new NotifierNotificationArgumentException('Invalid message type supplied.');
 		}
 
