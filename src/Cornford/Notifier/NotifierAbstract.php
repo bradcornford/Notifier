@@ -166,7 +166,7 @@ abstract class NotifierAbstract {
 	 *
 	 * @return array
 	 */
-	public function js($type = 'local')
+	protected function js($type = 'local')
 	{
 		$return = [];
 
