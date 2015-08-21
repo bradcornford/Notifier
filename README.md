@@ -142,9 +142,10 @@ The `getNotifications` method allows you to the fetch the current set of notific
 
 ### Assets
 
-The `assets` method allows you to the include the necessary Notifier assets to your template files.
+The `assets` method allows you to the include the necessary Notifier assets to your template files, with an optional parameter for type.
 
 	{{ Notifier::assets() }}
+	{{ Notifier::assets('cdn') }}
 
 ### Get Display Notifications
 

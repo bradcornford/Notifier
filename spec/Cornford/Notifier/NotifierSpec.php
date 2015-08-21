@@ -45,6 +45,7 @@ class NotifierSpec extends ObjectBehavior {
 		$view = Mockery::mock('Illuminate\View\Factory');
 		$view->shouldReceive('make')->andReturn($view);
 		$view->shouldReceive('withOptions')->andReturn($view);
+		$view->shouldReceive('withJavascripts')->andReturn($view);
 		$view->shouldReceive('render')->andReturn(self::STRING);
 		$session = Mockery::mock('Illuminate\Session\Store');
 		$session->shouldReceive('get')->andReturn([new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])]);

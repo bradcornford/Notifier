@@ -7,6 +7,15 @@ use Illuminate\Session\Store as Session;
 
 abstract class NotifierAbstract {
 
+	const JS_JQUERY_CDN = '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js';
+	const JS_JQUERY_LOCAL = 'packages/cornford/notifier/assets/js/jquery.min.js';
+
+	const JS_NOTIFY_CDN = '//cdnjs.cloudflare.com/ajax/libs/notify/0.3.1/notify.min.js';
+	const JS_NOTIFY_LOCAL = 'packages/cornford/notifier/assets/js/notify.min.js';
+
+	const JS_NOTIFYER_CDN = 'packages/cornford/notifier/assets/js/notifier.min.js';
+	const JS_NOTIFYER_LOCAL = 'packages/cornford/notifier/assets/js/notifier.min.js';
+
 	/**
 	 * View instance.
 	 *
@@ -151,13 +160,45 @@ abstract class NotifierAbstract {
 	}
 
 	/**
-	 *  Render assets.
+	 * Include the CDN JS / Local JS files.
+	 *
+	 * @param string $type
+	 *
+	 * @return array
+	 */
+	public function js($type = 'local')
+	{
+		$return = [];
+
+		switch ($type) {
+			case 'cdn':
+				$return[] = self::JS_JQUERY_CDN;
+				$return[] = self::JS_NOTIFY_CDN;
+				$return[] = self::JS_NOTIFYER_CDN;
+				break;
+			case 'local':
+			default:
+				$return[] = self::JS_JQUERY_LOCAL;
+				$return[] = self::JS_NOTIFY_LOCAL;
+				$return[] = self::JS_NOTIFYER_LOCAL;
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Render assets.
+	 *
+	 * @param string $type
 	 *
 	 * @return string
 	 */
-	public function assets()
+	public function assets($type = 'local')
 	{
-		return $this->view->make('notifier::assets')->withOptions(json_encode($this->options))->render();
+		return $this->view->make('notifier::assets')
+			->withOptions(json_encode($this->options))
+			->withJavascripts($this->js($type))
+			->render();
 	}
 
 }
