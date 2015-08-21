@@ -1,5 +1,6 @@
 <?php namespace Cornford\Notifier\Contracts;
 
+use DateTime;
 use Exception;
 use Illuminate\View\Factory as View;
 use Illuminate\Session\Store as Session;
@@ -29,8 +30,8 @@ interface NotifierInterface {
 	/**
 	 * Create a default notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -39,8 +40,8 @@ interface NotifierInterface {
 	/**
 	 * Create an info notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -49,8 +50,8 @@ interface NotifierInterface {
 	/**
 	 * Create a success notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -59,8 +60,8 @@ interface NotifierInterface {
 	/**
 	 * Create a warning notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -69,8 +70,8 @@ interface NotifierInterface {
 	/**
 	 * Create a danger notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */

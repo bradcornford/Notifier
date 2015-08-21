@@ -52,9 +52,9 @@ abstract class NotifierAbstract {
 	/**
 	 * Create a notification.
 	 *
-	 * @param string  $message
-	 * @param string  $type
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param string           $type
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -66,8 +66,8 @@ abstract class NotifierAbstract {
 	/**
 	 * Create a default notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -79,8 +79,8 @@ abstract class NotifierAbstract {
 	/**
 	 * Create an info notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -92,8 +92,8 @@ abstract class NotifierAbstract {
 	/**
 	 * Create a success notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -105,8 +105,8 @@ abstract class NotifierAbstract {
 	/**
 	 * Create a warning notification.
 	 *
-	 * @param string  $message
-	 * @param integer $expiry
+	 * @param string           $message
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */
@@ -119,7 +119,7 @@ abstract class NotifierAbstract {
 	 * Create a danger notification.
 	 *
 	 * @param string  $message
-	 * @param integer $expiry
+	 * @param DateTime|integer $expiry
 	 *
 	 * @return void
 	 */

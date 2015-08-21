@@ -1,5 +1,7 @@
 <?php namespace Cornford\Notifier\Contracts;
 
+use DateTime;
+
 interface NotifierNotificationInterface {
 
 	/**
