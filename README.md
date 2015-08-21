@@ -69,6 +69,8 @@ This will give you access to
 - [Success](#success)
 - [Warning](#warning)
 - [Danger](#danger)
+- [Set Options](#set-options)
+- [Get Options](#get-options)
 - [Set Notifications](#set-notifications)
 - [Get Notifications](#get-notifications)
 - [Assets](#assets)
@@ -127,6 +129,18 @@ The `danger` method allows you to create a danger notification, with parameters 
 
 	Notifier::danger('This is a message', 0);
 	Notifier::danger('This is a message', new DateTime('tomorrow'));
+
+### Set Options
+
+The `setOptions` method allows you to set the current set of Notifier options using a parameter for options as an array.
+
+	Notifier::setOptions(['option' => 'value']);
+
+### Get Options
+
+The `getOptions` method allows you to fetch the current set of Notifier options as an array.
+
+	$options = Notifier::getOptions();
 
 ### Set Notifications
 

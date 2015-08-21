@@ -77,6 +77,22 @@ interface NotifierInterface {
 	 */
 	public function danger($message, $expiry = 0);
 
+    /**
+     * Set options.
+     *
+     * @param array $value
+     *
+     * @return void
+     */
+    public function setOptions(array $value);
+
+    /**
+     * Get options.
+     *
+     * @return array
+     */
+    public function getOptions();
+
 	/**
 	 * Set notifications.
 	 *

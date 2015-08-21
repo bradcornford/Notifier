@@ -116,6 +116,14 @@ class NotifierSpec extends ObjectBehavior {
 		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
 	}
 
+	public function it_can_set_and_get_options()
+	{
+		$value = ['options' => 'value'];
+		$this->setOptions($value);
+		$this->getOptions()->shouldBeArray();
+		$this->getOptions()->shouldReturn($value);
+	}
+
 	public function it_can_set_and_get_notifications()
 	{
 		$this->setNotifications([

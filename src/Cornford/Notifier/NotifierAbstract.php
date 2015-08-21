@@ -138,6 +138,28 @@ abstract class NotifierAbstract {
 	}
 
 	/**
+	 * Set options.
+	 *
+	 * @param array $value
+	 *
+	 * @return void
+	 */
+	public function setOptions(array $value)
+	{
+		$this->options = $value;
+	}
+
+	/**
+	 * Get options.
+	 *
+	 * @return array
+	 */
+	public function getOptions()
+	{
+		return $this->options;
+	}
+
+	/**
 	 * Set notifications.
 	 *
 	 * @param array $value
