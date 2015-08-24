@@ -37,6 +37,17 @@ class NotifierSpec extends ObjectBehavior {
 
 				return (is_object($subject[$key[0]]) ? $subject[$key[0]]->getType() == $key[1] : $subject[$key[0]]['type'] == $key[1]);
 			},
+			'haveArrayItemNotificationDisplayed' => function ($subject, $key) {
+					if (!is_array($subject)) {
+						return false;
+					}
+
+					if (!count($subject)) {
+						return false;
+					}
+
+					return (is_object($subject[$key[0]]) ? $subject[$key[0]]->getDisplayed() == $key[1] : $subject[$key[0]]['displayed'] == $key[1]);
+				},
 		];
 	}
 
@@ -157,6 +168,52 @@ class NotifierSpec extends ObjectBehavior {
 		$this->getDisplayNotifications()->shouldHaveArrayItemNotificationType([0, 'success']);
 	}
 
+	public function it_can_update_an_array_of_notifications_to_displayed()
+	{
+		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification->setDisplayed(true);
+		$this->setNotifications([
+			$notification,
+			new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+		]);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(2);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([1, 'success']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([0, true]);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([1, false]);
+		$this->displayNotifications($this->getNotifications())->shouldReturn($this);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(2);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([1, 'success']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([0, true]);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([1, true]);
+	}
+
+	public function it_should_mark_displayable_notifications_as_displayed()
+	{
+		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification->setDisplayed(true);
+		$this->setNotifications([
+			$notification,
+			new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+		]);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(2);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([1, 'success']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([0, true]);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([1, false]);
+		$this->displayedDisplayableNotifications()->shouldReturn($this);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(2);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([1, 'success']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([0, true]);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([1, true]);
+	}
+
 	public function it_should_mark_all_notifications_as_displayed()
 	{
 		$this->setNotifications([
@@ -168,6 +225,25 @@ class NotifierSpec extends ObjectBehavior {
 		$this->getNotifications()->shouldHaveCount(2);
 		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
 		$this->getNotifications()->shouldHaveArrayItemNotificationType([1, 'success']);
+	}
+
+	public function it_can_update_an_array_of_notifications_to_expired()
+	{
+		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification->setDisplayed(true);
+		$this->setNotifications([
+				$notification,
+				new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+			]);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(2);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'error']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([1, 'success']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([0, true]);
+		$this->getNotifications()->shouldHaveArrayItemNotificationDisplayed([1, false]);
+		$this->expireNotifications($this->getNotifications())->shouldReturn($this);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(0);
 	}
 
 	public function it_should_expire_displayed_notifications()
@@ -231,6 +307,20 @@ class NotifierSpec extends ObjectBehavior {
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(1);
 		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'success']);
+	}
+
+	public function it_should_convert_an_array_of_notification_objects_to_an_array_of_arrays()
+	{
+		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification->setDisplayed(true);
+		$this->setNotifications([
+			new Notification(self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
+			$notification
+		]);
+		$this->getNotifications()->shouldBeArray();
+		$this->getNotifications()->shouldHaveCount(2);
+		$this->toArray($this->getNotifications())->shouldBeArray();
+		$this->toArray($this->getNotifications())->shouldHaveCount(2);
 	}
 
 }

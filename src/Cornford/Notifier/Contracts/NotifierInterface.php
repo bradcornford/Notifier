@@ -77,21 +77,21 @@ interface NotifierInterface {
 	 */
 	public function danger($message, $expiry = 0);
 
-    /**
-     * Set options.
-     *
-     * @param array $value
-     *
-     * @return void
-     */
-    public function setOptions(array $value);
+	/**
+	 * Set options.
+	 *
+	 * @param array $value
+	 *
+	 * @return void
+	 */
+	public function setOptions(array $value);
 
-    /**
-     * Get options.
-     *
-     * @return array
-     */
-    public function getOptions();
+	/**
+	 * Get options.
+	 *
+	 * @return array
+	 */
+	public function getOptions();
 
 	/**
 	 * Set notifications.
@@ -124,23 +124,48 @@ interface NotifierInterface {
 	public function getDisplayNotifications();
 
 	/**
-	 *  Update displayed status for notification messages.
+	 *  Update displayed status for passed notification messages.
 	 *
-	 * @return self
+	 * @param array $notifications
+	 *
+	 * @return Notifier
+	 */
+	public function displayNotifications(array $notifications = []);
+
+	/**
+	 *  Update displayed status for displayable notification messages.
+	 *
+	 * @return Notifier
+	 */
+	public function displayedDisplayableNotifications();
+
+	/**
+	 *  Update displayed status for all notification messages.
+	 *
+	 * @return Notifier
 	 */
 	public function displayedAllNotifications();
 
 	/**
-	 *  Expire displayed notification messages.
+	 * Expire passed notification messages.
 	 *
-	 * @return void
+	 * @param array $notifications
+	 *
+	 * @return Notifier
+	 */
+	public function expireNotifications(array $notifications = []);
+
+	/**
+	 * Expire displayed notification messages.
+	 *
+	 * @return Notifier
 	 */
 	public function expireDisplayedNotifications();
 
 	/**
 	 *  Expire all notification messages.
 	 *
-	 * @return void
+	 * @return Notifier
 	 */
 	public function expireAllNotifications();
 
@@ -149,7 +174,7 @@ interface NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return void
+	 * @return Notifier
 	 */
 	public function fetchNotifications(array $notifications = []);
 
@@ -158,8 +183,17 @@ interface NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return void
+	 * @return Notifier
 	 */
 	public function storeNotifications(array $notifications = []);
+
+	/**
+	 * Convert an array of Notification objects to an array of arrays.
+	 *
+	 * @param array $notifications
+	 *
+	 * @return array
+	 */
+	public function toArray(array $notifications = []);
 
 }

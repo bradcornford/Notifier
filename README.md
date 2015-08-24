@@ -75,11 +75,15 @@ This will give you access to
 - [Get Notifications](#get-notifications)
 - [Assets](#assets)
 - [Get Display Notifications](#get-display-notifications)
+- [Display Notifications](#display-notifications)
+- [Displayed Displayable Notifications](#displayed-displayable-notifications)
 - [Displayed All Notifications](#displayed-all-notifications)
+- [Expire Notifications](#expire-notifications)
 - [Expire Displayed Notifications](#expire-displayed-notifications)
 - [Expire All Notifications](#expire-all-notifications)
 - [Fetch Notifications](#fetch-notifications)
 - [Store Notifications](#store-notifications)
+- [To Array](#to-array)
 
 ### Notification
 
@@ -167,11 +171,31 @@ The `getDisplayNotifications` method allows you to get the current set of displa
 
 	$notifications = Notifier::getDisplayNotifications();
 
+### Display Notifications
+
+The `displayNotifications` method allows you to mark an array of passed notifications as displayed.
+
+	$notifications = Notifier::getNotifications();
+	Notifier::displayNotifications($notifications);
+
+### Displayed Displayable Notifications
+
+The `displayedDisplayableNotifications` method allows you to mark displayable notifications as displayed.
+
+	Notifier::displayedDisplayableNotifications();
+
 ### Displayed All Notifications
 
 The `displayedAllNotifications` method allows you to mark all notifications as displayed.
 
 	Notifier::displayedAllNotifications();
+
+### Expire Notifications
+
+The `expireNotifications` method allows you to expire an array of passed notifications.
+
+	$notifications = Notifier::getNotifications();
+	Notifier::expireNotifications($notifications);
 
 ### Expire Displayed Notifications
 
@@ -196,6 +220,13 @@ The `fetchNotifications` method allows you to fetch all notifications from the s
 The `storeNotifications` method allows you to store all notifications into the session.
 
 	Notifier::storeNotifications();
+
+### To Array
+
+The `toArray` method allows you convert an array of Notification objects to an array of arrays.
+
+	$notifications = Notifier::getNotifications();
+	Notifier::toArray($notifications);
 
 ### License
 

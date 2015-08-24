@@ -21,7 +21,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 				($notification->isDisplayed() && !$notification->isExpired()) ||
 				($notification->isDisplayed() && !$notification->getExpiry() instanceof DateTime && $notification->isExpired() == 0)
 			) {
-				$notifications[] = $notification->__toArray();
+				$notifications[] = $notification;
 			}
 		}
 
@@ -29,7 +29,37 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	}
 
 	/**
-	 *  Update displayed status for notification messages.
+	 *  Update displayed status for passed notification messages.
+	 *
+	 * @param array $notifications
+	 *
+	 * @return Notifier
+	 */
+	public function displayNotifications(array $notifications = [])
+	{
+		foreach ($notifications as $notification) {
+			$notification->setDisplayed(true);
+		}
+
+		return $this;
+	}
+
+	/**
+	 *  Update displayed status for displayable notification messages.
+	 *
+	 * @return Notifier
+	 */
+	public function displayedDisplayableNotifications()
+	{
+		foreach ($this->getDisplayNotifications() as $notification) {
+			$notification->setDisplayed(true);
+		}
+
+		return $this;
+	}
+
+	/**
+	 *  Update displayed status for all notification messages.
 	 *
 	 * @return Notifier
 	 */
@@ -43,7 +73,23 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	}
 
 	/**
-	 *  Expire displayed notification messages.
+	 * Expire passed notification messages.
+	 *
+	 * @param array $notifications
+	 *
+	 * @return Notifier
+	 */
+	public function expireNotifications(array $notifications = [])
+	{
+		foreach ($notifications as $key => $notification) {
+			unset(self::$notifications[$key]);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Expire displayed notification messages.
 	 *
 	 * @return Notifier
 	 */
@@ -104,6 +150,24 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 		$this->session->put('notifier.notifications', $notifications);
 
 		return $this;
+	}
+
+	/**
+	 * Convert an array of Notification objects to an array of arrays.
+	 *
+	 * @param array $notifications
+	 *
+	 * @return array
+	 */
+	public function toArray(array $notifications = [])
+	{
+		$result = [];
+
+		foreach ($notifications as $notification) {
+			$result[] = $notification->__toArray();
+		}
+
+		return $result;
 	}
 
 }
