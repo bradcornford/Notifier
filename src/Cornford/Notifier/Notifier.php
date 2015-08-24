@@ -1,9 +1,7 @@
 <?php namespace Cornford\Notifier;
 
 use Cornford\Notifier\Contracts\NotifierInterface;
-use Cornford\Notifier\Exceptions\NotifierException;
 use DateTime;
-use Exception;
 
 class Notifier extends NotifierAbstract implements NotifierInterface {
 
@@ -33,7 +31,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function displayNotifications(array $notifications = [])
 	{
@@ -47,7 +45,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 *  Update displayed status for displayable notification messages.
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function displayedDisplayableNotifications()
 	{
@@ -61,7 +59,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 *  Update displayed status for all notification messages.
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function displayedAllNotifications()
 	{
@@ -77,7 +75,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function expireNotifications(array $notifications = [])
 	{
@@ -91,7 +89,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 * Expire displayed notification messages.
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function expireDisplayedNotifications()
 	{
@@ -107,7 +105,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	/**
 	 *  Expire all notification messages.
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function expireAllNotifications()
 	{
@@ -121,7 +119,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function fetchNotifications(array $notifications = [])
 	{
@@ -139,7 +137,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	 *
 	 * @param array $notifications
 	 *
-	 * @return Notifier
+	 * @return self
 	 */
 	public function storeNotifications(array $notifications = [])
 	{
