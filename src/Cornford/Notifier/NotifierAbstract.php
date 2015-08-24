@@ -7,10 +7,10 @@ use Illuminate\Session\Store as Session;
 
 abstract class NotifierAbstract {
 
-	const JS_JQUERY_CDN = '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js';
+	const JS_JQUERY_CDN = '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js';
 	const JS_JQUERY_LOCAL = 'packages/cornford/notifier/assets/js/jquery.min.js';
 
-	const JS_NOTIFY_CDN = '//cdnjs.cloudflare.com/ajax/libs/notify/0.3.1/notify.min.js';
+	const JS_NOTIFY_CDN = '//cdnjs.cloudflare.com/ajax/libs/notify/0.3.2/notify.min.js';
 	const JS_NOTIFY_LOCAL = 'packages/cornford/notifier/assets/js/notify.min.js';
 
 	const JS_NOTIFYER_CDN = 'packages/cornford/notifier/assets/js/notifier.min.js';
