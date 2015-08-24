@@ -19,11 +19,15 @@ Think of Notifier as an easy way to send notification messages to a client using
 - `Notifier::getNotifications`
 - `Notifier::assets`
 - `Notifier::getDisplayNotifications`
+- `Notifier::displayNotifications`
+- `Notifier::displayedDisplayableNotifications`
 - `Notifier::displayedAllNotifications`
+- `Notifier::expireNotifications`
 - `Notifier::expireDisplayedNotifications`
 - `Notifier::expireAllNotifications`
 - `Notifier::fetchNotifications`
 - `Notifier::storeNotifications`
+- `Notifier::toArray`
 
 ## Installation
 
