@@ -114,7 +114,7 @@ class NotifierSpec extends ObjectBehavior {
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(1);
 		$this->getNotifications()->shouldHaveArrayItemType([0, 'Cornford\Notifier\Models\Notification']);
-		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'warning']);
+		$this->getNotifications()->shouldHaveArrayItemNotificationType([0, 'warn']);
 	}
 
 	public function it_can_create_a_danger_notification()
