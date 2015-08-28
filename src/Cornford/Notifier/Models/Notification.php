@@ -10,7 +10,7 @@ class Notification implements NotifierNotificationInterface {
 	const NOTIFICATION_TYPE_NONE = 'message';
 	const NOTIFICATION_TYPE_INFO = 'info';
 	const NOTIFICATION_TYPE_SUCCESS = 'success';
-	const NOTIFICATION_TYPE_WARNING = 'warning';
+	const NOTIFICATION_TYPE_WARNING = 'warn';
 	const NOTIFICATION_TYPE_DANGER = 'error';
 
 	/**
