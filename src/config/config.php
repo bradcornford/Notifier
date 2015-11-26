@@ -116,4 +116,15 @@ return array(
 	*/
 	'autoHideDelay' => 5000,
 
+	/*
+	|--------------------------------------------------------------------------
+	| Notification URL Exceptions
+	|--------------------------------------------------------------------------
+	|
+	| URL exceptions when not to show a notification.
+	|
+	*/
+	'urlExceptions' => array(
+	)
+
 );
