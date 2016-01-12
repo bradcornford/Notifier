@@ -8,7 +8,7 @@ use Mockery;
 class NotifierSpec extends ObjectBehavior {
 
 	const STRING = 'message';
-	const INTEGER = 0;
+	const INTEGER = 1;
 
 	const TYPE = Notification::NOTIFICATION_TYPE_NONE;
 
@@ -59,7 +59,7 @@ class NotifierSpec extends ObjectBehavior {
 		$view->shouldReceive('withJavascripts')->andReturn($view);
 		$view->shouldReceive('render')->andReturn(self::STRING);
 		$session = Mockery::mock('Illuminate\Session\Store');
-		$session->shouldReceive('get')->andReturn([new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])]);
+		$session->shouldReceive('get')->andReturn([new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, [])]);
 		$session->shouldReceive('put');
 		$this->beConstructedWith($view, $session, []);
 	}
@@ -138,7 +138,7 @@ class NotifierSpec extends ObjectBehavior {
 	public function it_can_set_and_get_notifications()
 	{
 		$this->setNotifications([
-			new Notification(self::STRING, self::TYPE, new DateTime('now'), self::INTEGER, [])
+			new Notification(self::INTEGER, self::STRING, self::TYPE, new DateTime('now'), self::INTEGER, [])
 		]);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(1);
@@ -153,11 +153,11 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_can_return_an_array_of_displayable_notifications()
 	{
-		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
 			$notification,
-			new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+			new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
 		]);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(2);
@@ -170,11 +170,11 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_can_update_an_array_of_notifications_to_displayed()
 	{
-		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
 			$notification,
-			new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+			new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
 		]);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(2);
@@ -193,11 +193,11 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_mark_displayable_notifications_as_displayed()
 	{
-		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
 			$notification,
-			new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+			new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
 		]);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(2);
@@ -217,8 +217,8 @@ class NotifierSpec extends ObjectBehavior {
 	public function it_should_mark_all_notifications_as_displayed()
 	{
 		$this->setNotifications([
-			new Notification(self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
-			new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []),
+			new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
+			new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, []),
 		]);
 		$this->displayedAllNotifications()->shouldReturn($this);
 		$this->getNotifications()->shouldBeArray();
@@ -229,11 +229,11 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_can_update_an_array_of_notifications_to_expired()
 	{
-		$notification = new Notification(self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), new DateTime('yesterday'), []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
 				$notification,
-				new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
+				new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, [])
 			]);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(2);
@@ -248,10 +248,10 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_expire_displayed_notifications()
 	{
-		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), 0, []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
-			new Notification(self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
+			new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
 			$notification
 		]);
 		$this->expireDisplayedNotifications()->shouldReturn($this);
@@ -262,10 +262,10 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_expire_all_notifications_as_displayed()
 	{
-		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
-			new Notification(self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
+			new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
 			$notification
 		]);
 		$this->expireAllNotifications()->shouldReturn($this);
@@ -283,7 +283,7 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_fetch_notifications_from_a_passed_array()
 	{
-		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
 		$this->fetchNotifications([$notification])->shouldReturn($this);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(1);
@@ -292,7 +292,7 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_store_notifications_into_a_session()
 	{
-		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
 		$this->setNotifications([$notification]);
 		$this->storeNotifications()->shouldReturn($this);
 		$this->getNotifications()->shouldBeArray();
@@ -302,7 +302,7 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_store_notifications_into_a_session_from_a_passed_array()
 	{
-		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
 		$this->storeNotifications([$notification])->shouldReturn($this);
 		$this->getNotifications()->shouldBeArray();
 		$this->getNotifications()->shouldHaveCount(1);
@@ -311,10 +311,10 @@ class NotifierSpec extends ObjectBehavior {
 
 	public function it_should_convert_an_array_of_notification_objects_to_an_array_of_arrays()
 	{
-		$notification = new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
+		$notification = new Notification(self::INTEGER, self::STRING, 'success', new DateTime('now'), self::INTEGER, []);
 		$notification->setDisplayed(true);
 		$this->setNotifications([
-			new Notification(self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
+			new Notification(self::INTEGER, self::STRING, 'error', new DateTime('now'), self::INTEGER, []),
 			$notification
 		]);
 		$this->getNotifications()->shouldBeArray();

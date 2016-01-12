@@ -31,6 +31,13 @@ abstract class NotifierAbstract {
 	protected $session;
 
 	/**
+	 * Notification Id.
+	 *
+	 * @var integer
+	 */
+	protected static $notificationId = 0;
+
+	/**
 	 * Options.
 	 *
 	 * @var array
@@ -69,7 +76,9 @@ abstract class NotifierAbstract {
 	 */
 	public function notification($message, $type, $expiry = 0)
 	{
-		self::$notifications[] = new Notification($message, $type, new DateTime('now'), $expiry);
+		self::$notificationId++;
+
+		self::$notifications[] = new Notification(self::$notificationId, $message, $type, new DateTime('now'), $expiry);
 	}
 
 	/**

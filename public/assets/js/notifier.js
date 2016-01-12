@@ -1,4 +1,4 @@
-/** Notifier.js - v1.1.0 - 2015/17/12
+/** Notifier.js - v1.2.0 - 2015/17/12
  * https://github.com/bradcornford/Notifier
  * Copyright (c) 2015 Bradley Cornford - MIT
  */
@@ -7,7 +7,7 @@
 
     $.notify.addStyle('bootstrap',{html:'<div class="alert" role="alert">\n<span data-notify-text></span>\n</div>',classes:{base:{padding:'15px','margin-bottom':'20px',border:'1px solid transparent','border-radius':'4px',color:'#545454','background-color':'#e8e8e8','border-color':'#d1d1d1'},error:{color:'#a94442','background-color':'#f2dede','border-color':'#ebccd1'},success:{color:'#3c763d','background-color':'#dff0d8','border-color':'#d6e9c6'},info:{color:'#31708f','background-color':'#d9edf7','border-color':'#bce8f1'},warn:{color:'#8a6d3b','background-color':'#fcf8e3','border-color':'#faebcc'}}});
 
-    var notifierUrl, notifierLoad, notifierSettings, notifierTimestamp = 0;
+    var notifierUrl, notifierLoad, notifierSettings, notifierTimestamp = 0, notifierId = 0;
 
     $.fn.notifier = function(options) {
         var settings = $.extend({
@@ -63,7 +63,10 @@
                 function(data) {
                     $.each(data.notifications,
                         function(key, item)  {
-                            $.notify(item.message, item.type, $.extend(settings, item.options));
+                            if (item.id > notifierId || !item.expired) {
+                                $.notify(item.message, item.type, $.extend(settings, item.options));
+                                notifierId = item.id;
+                            }
                         }
                     );
                 }

@@ -58,6 +58,7 @@ class Notification implements NotifierNotificationInterface {
 	/**
 	 * Constructor.
 	 *
+	 * @param integer          $id
 	 * @param string           $message
 	 * @param string           $type
 	 * @param DateTime         $datetime
@@ -66,8 +67,12 @@ class Notification implements NotifierNotificationInterface {
 	 *
 	 * @throws NotifierNotificationArgumentException
 	 */
-	public function __construct($message, $type, $datetime, $expiry = 0, array $options = [])
+	public function __construct($id, $message, $type, $datetime, $expiry = 0, array $options = [])
 	{
+		if (empty($id) || !is_numeric($id)) {
+			throw new NotifierNotificationArgumentException('Invalid id supplied.');
+		}
+
 		if (empty($message) || !is_string($message)) {
 			throw new NotifierNotificationArgumentException('Invalid message supplied.');
 		}
@@ -95,11 +100,34 @@ class Notification implements NotifierNotificationInterface {
 			throw new NotifierNotificationArgumentException('Invalid message expiry supplied.');
 		}
 
+		$this->setId($id);
 		$this->setMessage($message);
 		$this->setType($type);
 		$this->setDatetime($datetime);
 		$this->setExpiry($expiry);
 		$this->setOptions($options);
+	}
+
+	/**
+	 * Set the notification id.
+	 *
+	 * @param integer $value
+	 *
+	 * @return void
+	 */
+	public function setId($value)
+	{
+		$this->id = $value;
+	}
+
+	/**
+	 * Get the notification id.
+	 *
+	 * @return integer
+	 */
+	public function getId()
+	{
+		return $this->id;
 	}
 
 	/**
@@ -292,12 +320,14 @@ class Notification implements NotifierNotificationInterface {
 	public function __toArray()
 	{
 		return [
-			'options' => $this->getOptions(),
+			'id' => $this->getId(),
 			'message' => $this->getMessage(),
+			'options' => $this->getOptions(),
 			'type' => $this->getType(),
 			'datetime' => $this->getDatetime(),
 			'expiry' => $this->getExpiry(),
 			'displayed' => $this->getDisplayed(),
+			'expired' => $this->isExpired(),
 		];
 	}
 

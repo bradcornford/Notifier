@@ -7,6 +7,7 @@ interface NotifierNotificationInterface {
 	/**
 	 * Constructor.
 	 *
+	 * @param integer          $id
 	 * @param string           $message
 	 * @param string           $type
 	 * @param DateTime         $datetime
@@ -15,7 +16,23 @@ interface NotifierNotificationInterface {
 	 *
 	 * @throws NotifierNotificationArgumentException
 	 */
-	public function __construct($message, $type, $datetime, $expiry = 0, array $options = []);
+	public function __construct($id, $message, $type, $datetime, $expiry = 0, array $options = []);
+
+	/**
+	 * Set the notification id.
+	 *
+	 * @param integer $value
+	 *
+	 * @return void
+	 */
+	public function setId($value);
+
+	/**
+	 * Get the notification id.
+	 *
+	 * @return integer
+	 */
+	public function getId();
 
 	/**
 	 * Set the notification message.

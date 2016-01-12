@@ -17,7 +17,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 		foreach ($this->getNotifications() as $notification) {
 			if (!$notification->isDisplayed() ||
 				($notification->isDisplayed() && !$notification->isExpired()) ||
-				($notification->isDisplayed() && !$notification->getExpiry() instanceof DateTime && $notification->isExpired() == 0)
+				($notification->isDisplayed() && !$notification->getExpiry() instanceof DateTime && $notification->getExpiry() == 0)
 			) {
 				$notifications[] = $notification;
 			}
@@ -94,6 +94,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	public function expireDisplayedNotifications()
 	{
 		foreach ($this->getNotifications() as $key => $notification) {
+
 			if ($notification->isExpired() && $notification->isDisplayed()) {
 				unset(self::$notifications[$key]);
 			}
@@ -127,6 +128,12 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 			$notifications = $this->session->get('notifier.notifications', []);
 		}
 
+		foreach ($notifications as $notification) {
+			if ($notification->getId() > self::$notificationId) {
+				self::$notificationId = $notification->getId();
+			}
+		}
+
 		$this->setNotifications($notifications);
 
 		return $this;
@@ -143,6 +150,12 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	{
 		if (empty($notifications)) {
 			$notifications = $this->getNotifications();
+		}
+
+		foreach ($notifications as $notification) {
+			if ($notification->getId() > self::$notificationId) {
+				self::$notificationId = $notification->getId();
+			}
 		}
 
 		$this->session->put('notifier.notifications', $notifications);

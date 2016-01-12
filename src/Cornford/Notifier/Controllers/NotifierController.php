@@ -19,7 +19,7 @@ class NotifierController extends BaseController {
 			Notifier::expireDisplayedNotifications();
 		}
 
-		$notifications =  Notifier::getDisplayNotifications();
+		$notifications = Notifier::getDisplayNotifications();
 
 		if ((Request::ajax() && Route::is('notifier.index')) || !Request::ajax()) {
 			Notifier::displayNotifications($notifications);
