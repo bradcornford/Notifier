@@ -1,6 +1,8 @@
 <?php namespace Cornford\Notifier\Providers;
 
 
+use Cornford\Notifier\Listeners\AfterListener;
+use Cornford\Notifier\Listeners\BeforeListener;
 use Cornford\Notifier\Notifier;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,12 +20,19 @@ class NotifierServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function boot()
+	public function boot(\Illuminate\Routing\Router $router)
 	{
-		$this->package('cornford/notifier', 'notifier',  __DIR__ . '/../../../');
+		$this->publishes(
+			[
+				__DIR__ . '/../../../config/config.php' => config_path('notifier.php'),
+				__DIR__ . '/../../../../public' => public_path('packages/cornford/notifier')
+			],
+			'notifier'
+		);
+
+		$this->loadViewsFrom(__DIR__ . '/../../../views', 'notifier');
 
 		include __DIR__ . '/../../../routes.php';
-		include __DIR__ . '/../../../filters.php';
 	}
 
 	/**
@@ -33,12 +42,17 @@ class NotifierServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['events']->listen('notifier.before', 'Cornford\\Notifier\\Listeners\\AfterListener');
-		$this->app['events']->listen('notifier.after', 'Cornford\\Notifier\\Listeners\\BeforeListener');
+		$this->mergeConfigFrom(__DIR__ . '/../../../config/config.php', 'notifier');
+
+		$this->app['router']->middleware('NotifierBeforeListener', 'Cornford\\Notifier\\Listeners\\BeforeListener');
+		$this->app['router']->middleware('NotifierAfterListener', 'Cornford\\Notifier\\Listeners\\AfterListener');
+
+		$this->app['router']->before(BeforeListener::class);
+		$this->app['router']->after(AfterListener::class);
 
 		$this->app['notifier'] = $this->app->share(function($app)
 		{
-			$config = $app['config']->get('notifier::config');
+			$config = $app['config']->get('notifier');
 
 			return new Notifier($this->app->view, $this->app->{'session.store'}, $config);
 		});

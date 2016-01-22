@@ -5,6 +5,8 @@
 [![Build Status](https://travis-ci.org/bradcornford/Notifier.svg?branch=master)](https://travis-ci.org/bradcornford/notifier)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bradcornford/Notifier/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bradcornford/Notifier/?branch=master)
 
+### For Laravel 4.x, check [version 1.0.1](https://github.com/bradcornford/Notifier/tree/v1.4.0)
+
 Think of Notifier as an easy way to send notification messages to a client using AJAX in Laravel. These include:
 
 - `Notifier::notification`
@@ -49,13 +51,9 @@ The next step is to introduce the facade. Open `app/config/app.php`, and add a n
 
 	'Notifier'         => 'Cornford\Notifier\Facades\NotifierFacade',
 
-We then need to introduce the configuration files into your application/
+We then need to introduce the configuration files, JavaScripts and Stylesheets, by running the following command.
 
-	php artisan config:publish cornford/notifier
-
-Finally we need to introduce the packages JavaScripts and Stylesheets, by running the following command.
-
-	php artisan asset:publish cornford/notifier
+	php artisan vendor:publish --provider="Cornford\\Notifier\\Providers\\NotifierServiceProvider"
 
 That's it! You're all set to go.
 
@@ -166,8 +164,8 @@ The `getNotifications` method allows you to the fetch the current set of notific
 
 The `assets` method allows you to the include the necessary Notifier assets to your template files, with an optional parameter for type.
 
-	{{ Notifier::assets() }}
-	{{ Notifier::assets('cdn') }}
+	{!! Notifier::assets() !!}
+	{!! Notifier::assets('cdn') !!}
 
 ### Get Display Notifications
 
