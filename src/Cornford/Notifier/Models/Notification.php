@@ -21,6 +21,13 @@ class Notification implements NotifierNotificationInterface {
 	protected $options = [];
 
 	/**
+	 * Notification id.
+	 *
+	 * @var integer
+	 */
+	protected $id;
+
+	/**
 	 * Notification message.
 	 *
 	 * @var string
