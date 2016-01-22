@@ -1,18 +1,18 @@
 <?php namespace Cornford\Notifier\Contracts;
 
-use Exception;
-use Illuminate\View\Factory as View;
-use Illuminate\Session\Store as Session;
+use \Illuminate\Http\Request;
+use Closure;
 
 interface NotifierListenerInterface {
 
 	/**
-	 * Handle listener event.
+	 * Run the request filter.
 	 *
-	 * @param array $input
+	 * @param Request $request
+	 * @param Closure $next
 	 *
-	 * @return void
+	 * @return mixed
 	 */
-	public function handle(array $input = []);
+	public function handle($request, Closure $next);
 
 }

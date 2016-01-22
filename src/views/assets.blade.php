@@ -1,6 +1,6 @@
 @foreach ($javascripts as $javascript)
 
-    <script type="text/javascript" src="{{ asset($javascript) }}"></script>
+    <script type="text/javascript" src="{!!  asset($javascript) !!}"></script>
 
 @endforeach
 
@@ -8,7 +8,7 @@
 
     $(function() {
 
-        $(window).notifier({{ $options }});
+        $(window).notifier({!! $options !!});
 
     });
 

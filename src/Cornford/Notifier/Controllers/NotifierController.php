@@ -1,6 +1,6 @@
 <?php namespace Cornford\Notifier\Controllers;
 
-use BaseController;
+use App\Http\Controllers\Controller as BaseController;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Cornford\Notifier\Facades\NotifierFacade as Notifier;
