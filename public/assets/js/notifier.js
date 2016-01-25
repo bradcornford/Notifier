@@ -1,4 +1,4 @@
-/** Notifier.js - v1.1.0 - 2015/17/12
+/** Notifier.js - v1.1.1 - 2015/17/12
  * https://github.com/bradcornford/Notifier
  * Copyright (c) 2015 Bradley Cornford - MIT
  */
@@ -33,7 +33,7 @@
         if ($(location).attr('href').indexOf('public') > -1) {
             notifierUrl = $(location).attr('href').split('public')[0] + 'public/notifier/notifications';
         } else {
-            notifierUrl = $(location).attr('protocol') + '//' + $(location).attr('hostname') + '/notifier/notifications';
+            notifierUrl = $(location).attr('protocol') + '//' + $(location).attr('host') + '/notifier/notifications';
         }
 
         notifierSettings = settings;
