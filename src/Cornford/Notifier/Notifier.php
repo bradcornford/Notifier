@@ -17,7 +17,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 		foreach ($this->getNotifications() as $notification) {
 			if (!$notification->isDisplayed() ||
 				($notification->isDisplayed() && !$notification->isExpired()) ||
-				($notification->isDisplayed() && !$notification->getExpiry() instanceof DateTime && $notification->isExpired() == 0)
+				($notification->isDisplayed() && !$notification->getExpiry() instanceof DateTime && $notification->getExpiry() == 0)
 			) {
 				$notifications[] = $notification;
 			}
@@ -125,6 +125,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 	{
 		if (empty($notifications)) {
 			$notifications = $this->session->get('notifier.notifications', []);
+			$this->session->forget('notifier.notifications');
 		}
 
 		$this->setNotifications($notifications);
@@ -145,6 +146,7 @@ class Notifier extends NotifierAbstract implements NotifierInterface {
 			$notifications = $this->getNotifications();
 		}
 
+		$this->session->forget('notifier.notifications');
 		$this->session->put('notifier.notifications', $notifications);
 
 		return $this;

@@ -1,4 +1,4 @@
-/** Notifier.js - v1.1.1 - 2015/17/12
+/** Notifier.js - v1.1.2 - 2015/17/12
  * https://github.com/bradcornford/Notifier
  * Copyright (c) 2015 Bradley Cornford - MIT
  */
@@ -54,7 +54,7 @@
             }
 
             if (display) {
-                notifierLoad();
+                setTimeout(function() { notifierLoad(); }, 1000);
             }
         }
 

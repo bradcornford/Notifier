@@ -61,6 +61,7 @@ class NotifierSpec extends ObjectBehavior {
 		$session = Mockery::mock('Illuminate\Session\Store');
 		$session->shouldReceive('get')->andReturn([new Notification(self::STRING, 'success', new DateTime('now'), self::INTEGER, [])]);
 		$session->shouldReceive('put');
+		$session->shouldReceive('forget');
 		$this->beConstructedWith($view, $session, []);
 	}
 

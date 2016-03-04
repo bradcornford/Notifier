@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\Event;
 
 App::before(function($request)
 {
-	Notifier::fetchNotifications();
-//	Event::fire('notifier.before', [$request]);
+	Event::fire('notifier.before', $request);
 });
 
 App::after(function($request, $response)
 {
-	Notifier::storeNotifications();
-//	Event::fire('notifier.after', [$request, $response]);
+	Event::fire('notifier.after', $request, $response);
 });
