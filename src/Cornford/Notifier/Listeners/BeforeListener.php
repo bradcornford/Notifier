@@ -24,7 +24,7 @@ class BeforeListener implements NotifierListenerInterface
 			}
 		}
 
-		Notifier::fetchNotifications();
+		Notifier::storeNotifications();
 	}
 }
 

@@ -24,7 +24,7 @@ class AfterListener implements NotifierListenerInterface
 			}
 		}
 
-		Notifier::storeNotifications();
+		Notifier::fetchNotifications();
 	}
 }
 
