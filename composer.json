@@ -10,7 +10,12 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "illuminate/view": "5.*",
+        "illuminate/session": "5.*",
+        "illuminate/support": "5.*",
+        "illuminate/http": "5.*",
+        "illuminate/routing": "5.*"
     },
     "require-dev": {
         "phpspec/phpspec": "2.0.*@dev",
