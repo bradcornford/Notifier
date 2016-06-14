@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/cornford/notifier/version.png)](https://packagist.org/packages/cornford/notifier)
 [![Total Downloads](https://poser.pugx.org/cornford/notifier/d/total.png)](https://packagist.org/packages/cornford/notifier)
-[![Build Status](https://travis-ci.org/bradcornford/Notifier.svg?branch=master)](https://travis-ci.org/bradcornford/notifier)
+[![Build Status](https://travis-ci.org/bradcornford/Notifier.svg?branch=master)](https://travis-ci.org/bradcornford/Notifier)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bradcornford/Notifier/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bradcornford/Notifier/?branch=master)
 
 ### For Laravel 4.x, check [version 1.0.1](https://github.com/bradcornford/Notifier/tree/v1.4.0)
