@@ -50,12 +50,15 @@ class NotifierServiceProvider extends ServiceProvider {
 		$this->app['router']->before(BeforeListener::class);
 		$this->app['router']->after(AfterListener::class);
 
-		$this->app['notifier'] = $this->app->share(function($app)
-		{
-			$config = $app['config']->get('notifier');
+		$this->app->singleton(
+            'notifier',
+            function($app)
+            {
+                $config = $app['config']->get('notifier');
 
-			return new Notifier($this->app->view, $this->app->{'session.store'}, $config);
-		});
+                return new Notifier($this->app->view, $this->app->{'session.store'}, $config);
+            }
+		);
 	}
 
 	/**
