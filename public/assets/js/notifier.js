@@ -1,4 +1,4 @@
-/** Notifier.js - v1.1.2 - 2015/17/12
+/** Notifier.js - v1.1.2 - 2020/05/18
  * https://github.com/bradcornford/Notifier
  * Copyright (c) 2015 Bradley Cornford - MIT
  */
@@ -92,10 +92,18 @@
 
                 notifierTimestamp = evt.timestamp;
 
-                if (settings.context.href != undefined) {
-                    url = settings.context.href;
+                if (settings.context.hasAttribute('data-url')) {
+                    url = settings.context.getAttribute('data-url');
+                } else if (settings.context.hasAttribute('href')) {
+                    url = settings.context.getAttribute('href');
+                } else if (settings.context.hasAttribute('src')) {
+                    url = settings.context.getAttribute('href');
+                } else if (settings.context.hasAttribute('action')) {
+                    url = settings.context.getAttribute('action');
+                } else if (settings.context.hasAttribute('formaction')) {
+                    url = settings.context.getAttribute('formaction');
                 } else {
-                    url = settings.context.action;
+                    return;
                 }
 
                 notifierDisplay(settings, url);

@@ -18,8 +18,10 @@ class AfterListener implements NotifierListenerInterface
 	 */
 	public function handle(HandleRequest $request = null, HandleResponse $response = null)
 	{
+		$url = ($request->query('data-url') !== null ? $request->query('data-url') : $request->path());
+
 		foreach (Notifier::getOptions()['urlExceptions'] as $urlException) {
-			if (stristr($request->path(), $urlException)) {
+			if (stristr($url, $urlException)) {
 				return;
 			}
 		}
