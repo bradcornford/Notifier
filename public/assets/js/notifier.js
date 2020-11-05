@@ -54,7 +54,7 @@
             }
 
             if (display) {
-                setTimeout(function() { notifierLoad(); }, 1000);
+                setTimeout(function() { notifierLoad(); }, 2000);
             }
         }
 
@@ -63,7 +63,8 @@
                 function(data) {
                     $.each(data.notifications,
                         function(key, item)  {
-                            $.notify(item.message, item.type, $.extend(settings, item.options));
+                            item.options.className = item.type;
+                            $.notify(item.message, $.extend(settings, item.options));
                         }
                     );
                 }
